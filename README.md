@@ -1,36 +1,41 @@
 # Introduction to Spring Cloud Dataflow: Steaming apps and Bitnami Charts
 
+## Installing charts
 
-## Install Bitnami charts repository
+Install Bitnami charts repository
 
 ```console
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
 
-## Install monitoring tools
+### Install monitoring tools
 
 ```console
 $ ./scripts/deploy-monitoring.sh
 ```
 
-## Install dataflow
+### Install dataflow
 
 ```console
 $ ./scripts/deploy-dataflow.sh
 ```
 
-## Install applications database
+### Install applications database
 
 ```console
 $ ./scripts/deploy-mongodb.sh
 ```
 
 
+## Stream DSLs
+
 ```
 composed-data=trigger --payload="{ \"data\": { \"temperature\": 12 } }" --cron="*/1 * * * * *" | break-down: transform --expression=#jsonPath(payload,'$.data') > :sources
 main=:sources > log
 simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/10 * * * * *" > :sources
 ```
+
+### Get monogodb password
 
 ```console
 $ k get secrets mongodb -o=jsonpath='{.data.mongodb-password}' | base64 --decode
@@ -56,6 +61,8 @@ expose=:sources > websocket
 source-json=trigger --payload="{ \"temperature\": 10 }" --cron="*/5 * * * * *" > :sources
 ```
 
+### Forward port for websocket
+
 ```console
-k port-forward pod/expose-data-websocket-v1-6b6b56d45f-skkfr 8888:9292
+$ k port-forward pod/expose-data-websocket-v1-6b6b56d45f-skkfr 8888:9292
 ```
