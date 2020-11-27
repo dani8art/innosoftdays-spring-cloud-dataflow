@@ -10,7 +10,8 @@ if ! helm status -n "${mongodb_namespace}" "${mongodb_release_name}" > /dev/null
 
     helm install --wait mongodb bitnami/mongodb \
         --set auth.database=${database_name} \
-        --set auth.username=${database_username}
+        --set auth.username=${database_username} \
+        --set auth.password=rDWuDtGG7b
 fi
 echo "A release of  bitnami/mongodb, ${mongodb_release_name}, is running on ${mongodb_namespace} namespace"
 

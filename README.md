@@ -1,5 +1,12 @@
 # Introduction to Spring Cloud Dataflow: Steaming apps and Bitnami Charts
 
+You can see the slides [here](https://drive.google.com/file/d/1kU2MA0GrQY6PYZX4NDs3_Hu7lMI020nD/view?usp=sharing)
+
+## Requisites
+
+- Kubernetes cluster using: [Minikube](https://minikube.sigs.k8s.io/docs/), [Docker Desktop](https://www.docker.com/products/docker-desktop) or any cloud provider.
+- Helm [command line ](https://helm.sh/docs/)
+
 ## Installing charts
 
 Install Bitnami charts repository
@@ -35,7 +42,7 @@ main=:sources > log
 simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/5 * * * * *" > :sources
 ```
 
-### Get monogodb password
+### Get mongodb password
 
 ```console
 $ k get secrets mongodb -o=jsonpath='{.data.mongodb-password}' | base64 --decode
@@ -56,7 +63,7 @@ expose-data=mongodb --authentication-database=innosoft-demo --username=innosoft-
 
 ```
 source-raw=trigger --payload="{ \"data\": { \"temperature\": 12 } }" --cron="*/1 * * * * *" | data-to-temperature: transform --expression=#jsonPath(payload,'$.data') > :sources
-main=:sources > mongodb --authentication-database=innosoft-demo --username=innosoft-demo-user --database=innosoft-demo --password=gcHngF7Jut --port=27017 --host=mongodb.default.svc.cluster.local --collection=measures
+main=:sources > mongodb --authentication-database=innosoft-demo --username=innosoft-demo-user --database=innosoft-demo --password=rDWuDtGG7b --port=27017 --host=mongodb.default.svc.cluster.local --collection=measures
 expose=:sources > websocket
 source-json=trigger --payload="{ \"temperature\": 10 }" --cron="*/5 * * * * *" > :sources
 ```
