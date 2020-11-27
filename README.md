@@ -2,7 +2,7 @@
 
 You can see the slides [here](https://drive.google.com/file/d/1kU2MA0GrQY6PYZX4NDs3_Hu7lMI020nD/view?usp=sharing)
 
-## Requisites
+## Requirements
 
 - Kubernetes cluster using: [Minikube](https://minikube.sigs.k8s.io/docs/), [Docker Desktop](https://www.docker.com/products/docker-desktop) or any cloud provider.
 - Helm [command line ](https://helm.sh/docs/)
