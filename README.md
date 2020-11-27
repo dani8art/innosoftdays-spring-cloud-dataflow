@@ -1,6 +1,7 @@
 # Introduction to Spring Cloud Dataflow: Steaming apps and Bitnami Charts
 
 You can see the slides [here](https://drive.google.com/file/d/1kU2MA0GrQY6PYZX4NDs3_Hu7lMI020nD/view?usp=sharing)
+
 The recording of the talk [here](https://www.twitch.tv/videos/817214034), start at 1h 15min
 
 ## Requirements
