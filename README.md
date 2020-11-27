@@ -32,7 +32,7 @@ $ ./scripts/deploy-mongodb.sh
 ```
 composed-data=trigger --payload="{ \"data\": { \"temperature\": 12 } }" --cron="*/1 * * * * *" | break-down: transform --expression=#jsonPath(payload,'$.data') > :sources
 main=:sources > log
-simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/10 * * * * *" > :sources
+simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/5 * * * * *" > :sources
 ```
 
 ### Get monogodb password
@@ -44,13 +44,13 @@ $ k get secrets mongodb -o=jsonpath='{.data.mongodb-password}' | base64 --decode
 ```
 composed-data=trigger --payload="{ \"data\": { \"temperature\": 12 } }" --cron="*/1 * * * * *" | break-down: transform --expression=#jsonPath(payload,'$.data') > :sources
 main=:sources > mongodb --authentication-database=innosoft-demo --username=innosoft-demo-user --database=innosoft-demo --password=rDWuDtGG7b --port=27017 --host=mongodb.default.svc.cluster.local --collection=measures
-simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/10 * * * * *" > :sources
+simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/5 * * * * *" > :sources
 ```
 
 ```
 composed-data=trigger --payload="{ \"data\": { \"temperature\": 12 } }" --cron="*/1 * * * * *" | break-down: transform --expression=#jsonPath(payload,'$.data') > :sources
 main=:sources > mongodb --authentication-database=innosoft-demo --username=innosoft-demo-user --database=innosoft-demo --password=rDWuDtGG7b --port=27017 --host=mongodb.default.svc.cluster.local --collection=measures
-simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/10 * * * * *" > :sources
+simple-data=trigger --payload="{ \"temperature\": 10 }" --cron="*/5 * * * * *" > :sources
 expose-data=mongodb --authentication-database=innosoft-demo --username=innosoft-demo-user --database=innosoft-demo --password=rDWuDtGG7b --port=27017 --host=mongodb.default.svc.cluster.local --collection=measures | websocket
 ```
 
